@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Transfer helper · FPL Guide{% endblock %}
+{% block content %}
+<h1>Transfer helper</h1>
+<p>Enter the IDs of the players in your squad (see the list below) and your money in the bank.</p>
+
+<form class="filters" method="post">
+  <label>Player IDs <input name="ids" placeholder="e.g. 1, 4, 7, 10" size="40"></label>
+  <label>Bank (£m) <input type="number" step="0.1" name="bank" value="0"></label>
+  <button type="submit">Suggest transfers</button>
+</form>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+{% if suggestions is not none %}
+  {% if suggestions %}
+  <table>
+    <thead><tr><th>Sell</th><th></th><th>Buy</th><th>Score gain</th></tr></thead>
+    <tbody>
+    {% for s in suggestions %}
+      <tr>
+        <td>{{ s.out.name }} <span class="muted">£{{ "%.1f"|format(s.out.price) }}m · {{ s.out.score }}</span></td>
+        <td>➜</td>
+        <td><strong>{{ s["in"].name }}</strong> <span class="muted">£{{ "%.1f"|format(s["in"].price) }}m · {{ s["in"].score }}</span></td>
+        <td class="score">+{{ s.gain }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No upgrades found. Your team already looks strong!</p>
+  {% endif %}
+{% endif %}
+
+<details>
+  <summary>Player ID list</summary>
+  <ul class="id-list">
+  {% for p in all_players %}<li><code>{{ p.id }}</code> {{ p.name }} <span class="muted">({{ p.position }}, {{ p.team }})</span></li>{% endfor %}
+  </ul>
+</details>
+{% endblock %}

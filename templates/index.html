@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Gameweek {{ gw }} picks</h1>
+  <p>Players ranked by recent form, season average and how easy their next fixtures look.</p>
+</section>
+
+<div class="grid">
+{% for pos, picks in best_by_position.items() %}
+  <div class="card">
+    <h2>Top {{ pos }}</h2>
+    <ol>
+    {% for p in picks %}
+      <li><strong>{{ p.name }}</strong> <span class="muted">{{ p.team }} · £{{ "%.1f"|format(p.price) }}m</span>
+          <span class="score">{{ p.score }}</span></li>
+    {% endfor %}
+    </ol>
+  </div>
+{% endfor %}
+</div>
+
+<h2>Differentials (owned by under 10% of managers)</h2>
+{% with rows = differentials %}{% include "_table.html" %}{% endwith %}
+{% endblock %}

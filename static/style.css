@@ -1,0 +1,40 @@
+:root {
+  --purple: #37003c;
+  --green: #00ff87;
+  --bg: #f4f2f5;
+  --card: #ffffff;
+  --muted: #6b6470;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, sans-serif; background: var(--bg); color: #1d1020; }
+header { background: var(--purple); color: white; display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; }
+header a { color: white; text-decoration: none; margin-left: 20px; }
+header a:hover { color: var(--green); }
+.logo { font-weight: 800; font-size: 1.2rem; margin-left: 0; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px; }
+.hero h1 { margin-bottom: 4px; }
+.hero p, .muted { color: var(--muted); }
+.muted { font-size: .85em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+.card { background: var(--card); border-radius: 12px; padding: 16px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.card h2 { margin-top: 0; font-size: 1.05rem; }
+.card li { margin: 6px 0; }
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; font-size: .92rem; }
+th { background: #faf7fb; font-size: .8rem; text-transform: uppercase; color: var(--muted); }
+.score { font-weight: 700; color: var(--purple); }
+.card .score { float: right; }
+.pos { padding: 2px 8px; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+.pos.gk { background: #ffe9a8; } .pos.def { background: #c9f2ff; }
+.pos.mid { background: #c8ffd9; } .pos.fwd { background: #ffd0d6; }
+.fixtures { font-size: .8rem; }
+.diff-1, .diff-2 { color: #0a8f4a; } .diff-3 { color: #7a6f00; } .diff-4, .diff-5 { color: #c0262d; }
+.filters { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; margin: 16px 0 20px; }
+.filters label { display: flex; flex-direction: column; font-size: .85rem; gap: 4px; }
+input, select, button { padding: 8px 10px; border-radius: 8px; border: 1px solid #ccc; font: inherit; }
+button { background: var(--purple); color: white; border: none; cursor: pointer; }
+button:hover { background: #5a0663; }
+.error { color: #c0262d; }
+details { margin-top: 28px; }
+.id-list { columns: 3; font-size: .85rem; }

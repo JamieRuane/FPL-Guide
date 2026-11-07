@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Players · FPL Guide{% endblock %}
+{% block content %}
+<h1>Player finder</h1>
+<form class="filters" method="get">
+  <label>Position
+    <select name="position">
+      <option value="">Any</option>
+      {% for pos in ["GK", "DEF", "MID", "FWD"] %}
+        <option {% if position == pos %}selected{% endif %}>{{ pos }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Max price (£m)
+    <input type="number" step="0.1" name="max_price" value="{{ max_price or '' }}">
+  </label>
+  <label>Sort by
+    <select name="sort">
+      {% for key, label in [("score","Score"),("value","Value (score per £m)"),("form","Form"),("total_points","Total points")] %}
+        <option value="{{ key }}" {% if sort_by == key %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <button type="submit">Filter</button>
+</form>
+{% with rows = players %}{% include "_table.html" %}{% endwith %}
+{% endblock %}

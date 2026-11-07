@@ -1,0 +1,22 @@
+{# Reusable player table. Pass in `rows` (a list of Player objects). #}
+<table>
+  <thead>
+    <tr><th>Player</th><th>Team</th><th>Pos</th><th>Price</th><th>Form</th>
+        <th>Pts</th><th>Owned</th><th>Next fixtures</th><th>Score</th></tr>
+  </thead>
+  <tbody>
+  {% for p in rows %}
+    <tr>
+      <td><strong>{{ p.name }}</strong></td>
+      <td>{{ p.team }}</td>
+      <td><span class="pos {{ p.position|lower }}">{{ p.position }}</span></td>
+      <td>£{{ "%.1f"|format(p.price) }}m</td>
+      <td>{{ p.form }}</td>
+      <td>{{ p.total_points }}</td>
+      <td>{{ p.selected_by }}%</td>
+      <td class="fixtures diff-{{ p.avg_difficulty|round|int }}">{{ p.next_opponents }}</td>
+      <td class="score">{{ p.score }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
